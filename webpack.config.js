@@ -4,16 +4,13 @@ const path = require( "path" );
 const webpack = require( "webpack" );
 const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
 const SpeedMeasurePlugin = require( "speed-measure-webpack-plugin" );
+const { BundleStatsWebpackPlugin } = require( 'bundle-stats-webpack-plugin' );
+
 
 const smp = new SpeedMeasurePlugin( {
   outputTarget: 'dist/speed.json',
   outputFormat: 'json'
 } );
-const isProduction = process.env.NODE_ENV == "production";
-
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : "style-loader";
 
 const config = smp.wrap( {
   entry: "./src/index.js",
@@ -25,7 +22,11 @@ const config = smp.wrap( {
     all: true
   },
   plugins: [
-    new webpack.ProgressPlugin()
+    new webpack.ProgressPlugin(),
+    new BundleStatsWebpackPlugin( {
+      json: true,
+      html: false,
+    } )
   ],
   module: {
     rules: [
@@ -35,7 +36,7 @@ const config = smp.wrap( {
       },
       {
         test: /\.css$/i,
-        use: [ stylesHandler, "css-loader" ],
+        use: [ "style-loader", "css-loader" ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
