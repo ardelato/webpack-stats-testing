@@ -22,8 +22,9 @@ jobs:
           npm install
           npx webpack --progress
 
-      - name: Run bundle-stats
-        uses: vio/bundle-stats-action@v1
-        with:
-          webpack-stats-path: 'dist/webpack-stats.json'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: ls
+      # - name: Run bundle-stats
+      #   uses: vio/bundle-stats-action@v1
+      #   with:
+      #     webpack-stats-path: ${{ GITHUB_WORKSPACE }}.dist/webpack-stats.json'
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
