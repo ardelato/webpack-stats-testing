@@ -41,3 +41,11 @@ jobs:
           path: |
             ./dist/bundle-stats.json
             ./dist/bundle-stats.html
+      
+      - name: PR Comment
+        uses: github-actions-up-and-running/pr-comment@v1.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: "bundle-stats"
+
+      
