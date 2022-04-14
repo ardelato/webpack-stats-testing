@@ -19,7 +19,12 @@ const config = smp.wrap( {
     clean: true
   },
   stats: {
-    all: true
+    assets: true,
+    entrypoints: true,
+    chunks: true,
+    modules: true,
+    builtAt: true,
+    hash: true
   },
   plugins: [
     new webpack.ProgressPlugin(),
