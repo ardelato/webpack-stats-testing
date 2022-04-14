@@ -18,6 +18,7 @@ jobs:
           node-version: 16
 
       - name: Cache Node Modules
+        id: cache-node
         uses: actions/cache@v3
         with:
           path: |
@@ -26,17 +27,17 @@ jobs:
           key: node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
+        if: steps.cache-node.outputs.cache-hit != true
         run: |
           npm install
 
       - name: Run Webpack
-        run: BUNDLE_STATS_BASELINE=true npx webpack
+        run: npx webpack
 
-      - run: ls node_modules/.cache/bundle-stats
-      # - name: Save Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: webpack-bundle-stats
-      #     path: |
-      #       ./dist/bundle-stats.json
-      #       ./dist/bundle-stats.html
+      - name: Save Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: webpack-bundle-stats
+          path: |
+            ./dist/bundle-stats.json
+            ./dist/bundle-stats.html
