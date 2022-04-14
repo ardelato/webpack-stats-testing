@@ -30,7 +30,7 @@ jobs:
           npm install
 
       - name: Run Webpack
-          BUNDLE_STATS_BASELINE=true npx webpack
+        run: BUNDLE_STATS_BASELINE=true npx webpack
 
       - run: ls node_modules/.cache/bundle-stats
       # - name: Save Artifacts
