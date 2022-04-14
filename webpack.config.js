@@ -22,7 +22,7 @@ const config = smp.wrap( {
     clean: true
   },
   stats: {
-    all: false
+    all: true
   },
   plugins: [
     new webpack.ProgressPlugin()
