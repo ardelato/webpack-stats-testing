@@ -20,12 +20,13 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npx webpack
+          BUNDLE_STATS_BASELINE=true npx webpack
 
-      - name: Save Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: webpack-bundle-stats
-          path: |
-            ./dist/bundle-stats.json
-            ./dist/bundle-stats.html
+      - run: ls node_modules/.cache/bundle-stats
+      # - name: Save Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: webpack-bundle-stats
+      #     path: |
+      #       ./dist/bundle-stats.json
+      #       ./dist/bundle-stats.html
