@@ -30,7 +30,7 @@ const config = smp.wrap( {
     new webpack.ProgressPlugin(),
     new BundleStatsWebpackPlugin( {
       json: true,
-      html: false,
+      html: true,
     } )
   ],
   module: {

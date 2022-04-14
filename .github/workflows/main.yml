@@ -20,10 +20,12 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npx webpack --json ./dist/webpack-stats.json
+          npx webpack
 
-      - name: Run bundle-stats
-        uses: vio/bundle-stats-action@v1
+      - name: Save Artifacts
+        uses: actions/upload-artifact@v3
         with:
-          webpack-stats-path: './dist/webpack-stats.json'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          name: webpack-bundle-stats
+          path: |
+            ./dist/bundle-stats.json
+            ./dist/bundle-stats.html
