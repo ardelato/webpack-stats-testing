@@ -24,14 +24,11 @@ const config = {
     chunks: true,
     modules: true,
     builtAt: true,
-    hash: true
+    hash: true,
+    excludeAssets: [ /webpack-stats.json/ ],
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new BundleStatsWebpackPlugin( {
-      json: true,
-      html: true,
-    } )
   ],
   module: {
     rules: [
