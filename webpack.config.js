@@ -12,7 +12,7 @@ const smp = new SpeedMeasurePlugin( {
   outputFormat: 'json'
 } );
 
-const config = smp.wrap( {
+const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve( __dirname, "dist" ),
@@ -52,6 +52,6 @@ const config = smp.wrap( {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-} );
+};
 
 module.exports = config;
