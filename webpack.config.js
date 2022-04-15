@@ -12,7 +12,7 @@ const smp = new SpeedMeasurePlugin( {
   outputFormat: 'json'
 } );
 
-const config = {
+const config = smp.wrap( {
   entry: "./src/index.js",
   output: {
     path: path.resolve( __dirname, "dist" ),
@@ -24,11 +24,14 @@ const config = {
     chunks: true,
     modules: true,
     builtAt: true,
-    hash: true,
-    excludeAssets: [ /webpack-stats.json/ ],
+    hash: true
   },
   plugins: [
     new webpack.ProgressPlugin(),
+    new BundleStatsWebpackPlugin( {
+      json: true,
+      html: true,
+    } )
   ],
   module: {
     rules: [
@@ -49,6 +52,6 @@ const config = {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-};
+} );
 
 module.exports = config;

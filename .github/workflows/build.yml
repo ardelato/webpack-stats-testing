@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
 
       # Build and output webpack stats to webpack-stats.json
-      - run: npm run build --json webpack-stats.json
+      - run: npm run build -- --json webpack-stats.json
 
       # Upload webpack-stats.json to use on relative-ci.yaml workflow
       - name: Upload webpack stats artifact
