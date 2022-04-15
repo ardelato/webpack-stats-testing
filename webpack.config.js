@@ -8,7 +8,7 @@ const { BundleStatsWebpackPlugin } = require( 'bundle-stats-webpack-plugin' );
 
 
 const smp = new SpeedMeasurePlugin( {
-  outputTarget: 'dist/speed.json',
+  outputTarget: './dist/speed.json',
   outputFormat: 'json'
 } );
 
