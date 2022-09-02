@@ -1,0 +1,24 @@
+name: Commit Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - run: touch 'test.txt'
+        
+      - run: |
+            git config user.name "GitHub Actions Bot"
+            git config user.email "<>"
+            git add 'test.txt'
+            git commit -m "[bot] testing commit"
+            git push
